@@ -43,7 +43,7 @@ earthquakeHeader = ['\ufeffId', 'Fecha', 'Hora local', 'Latitud N(°)', 'Longitu
 
 def getCsvData(fileName):
   data = []
-  with open("./../Tremor/static/Sismos-el-salvador.csv") as csv_file:
+  with open(fileName) as csv_file:
     reader = csv.reader(csv_file)
     headers = next(reader);
     print(headers)
@@ -72,8 +72,7 @@ def populateEarthquake(data):
 
 def main():
   try:
-    fileName = sys.argv[1]
-    print(fileName)
+    fileName = str(sys.argv[1])
     data = getCsvData(fileName)
     populateEarthquake(data)
   except error as y:
