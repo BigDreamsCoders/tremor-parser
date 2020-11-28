@@ -3,10 +3,12 @@ from logging import error
 import sys
 from dotenv import load_dotenv
 from os import getenv
+from geoalchemy2.types import Geometry
 from sqlalchemy import create_engine
 from sqlalchemy import Column, String, Integer, Numeric
 from sqlalchemy.ext.declarative import declarative_base  
 from sqlalchemy.orm import sessionmaker
+from geoalchemy2 import Geometry
 
 load_dotenv()
 
@@ -32,7 +34,7 @@ class Sismos(base):
   depth = Column('profundidad', Numeric)
   magnitude = Column('magnitud', Numeric)
   intensity = Column('intensidad', String)
-
+  geom = Column('geom', Geometry(geometry_type='POINT', srid=100000))
 
 Session = sessionmaker(db)
 session = Session()
@@ -46,7 +48,6 @@ def getCsvData(fileName):
   with open(fileName) as csv_file:
     reader = csv.reader(csv_file)
     headers = next(reader);
-    print(headers)
     if headers != earthquakeHeader:
       print("Revisa los datos del csv")
       return 1
@@ -65,10 +66,10 @@ def populateEarthquake(data):
         localization = row[5], 
         depth = float(row[6]), 
         magnitude = float(row[7]), 
-        intensity = row[8]
+        intensity = row[8],
+        geom = f"SRID=100000;POINT({row[4]} {row[3]})"
       ))
   session.commit()
-
 
 def main():
   try:
