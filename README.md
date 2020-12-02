@@ -22,7 +22,9 @@ Luego se deben instalar las dependecias
 
 ## Ejecución
 
-`python app.py <ruta_archivo_csv>`
+```bash
+python app.py <ruta_archivo_csv>
+```
 
 ## Parametros
 
