@@ -19,3 +19,10 @@ Las variables de entorno requeridas son:
 ## Parametros
 
 - ruta_archivo_csv: archivo proveido por MARN sobre registro de sismos en El Salvador
+
+## Librerías necesarias
+
+Uno de los modulos de Python necesita que en el entorno donde se vaya a ejecutar esté instalado PostgreSQL, si la base de datos a la que se va a insertar está en un contenedor de Docker y no está instalado ninguna versión de PostgreSQL, entonces es necesario instalar las siguientes librerías:
+```bash
+sudo apt install libpq-dev python-psycopg2
+```
