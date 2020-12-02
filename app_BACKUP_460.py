@@ -34,7 +34,10 @@ class Sismos(base):
   depth = Column('profundidad', Numeric)
   magnitude = Column('magnitud', Numeric)
   intensity = Column('intensidad', String)
+<<<<<<< HEAD
   #geom = Column('geom', Geometry(geometry_type='POINT', srid=100000))
+=======
+>>>>>>> faf7d8a38afa133970e30530c3394f46b0287e9e
   geom = Column('geom', Geometry(geometry_type='POINT', srid=4326))
 
 Session = sessionmaker(db)
@@ -69,7 +72,10 @@ def populateEarthquake(data):
         magnitude = float(row[7]), 
         intensity = row[8],
         geom = f"SRID=4326;POINT({row[4]} {row[3]})"
+<<<<<<< HEAD
         #geom = f"SRID=100000;POINT({row[4]} {row[3]})"
+=======
+>>>>>>> faf7d8a38afa133970e30530c3394f46b0287e9e
       ))
   session.commit()
 

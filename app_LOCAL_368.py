@@ -46,7 +46,7 @@ earthquakeHeader = ['\ufeffId', 'Fecha', 'Hora local', 'Latitud N(°)', 'Longitu
 
 def getCsvData(fileName):
   data = []
-  with open(fileName, encoding="utf8") as csv_file:
+  with open(fileName) as csv_file:
     reader = csv.reader(csv_file)
     headers = next(reader);
     if headers != earthquakeHeader:
